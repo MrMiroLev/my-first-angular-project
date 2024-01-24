@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -6,5 +6,20 @@ import { Component } from '@angular/core';
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
+  @Output() recipesSelected = new EventEmitter<{ isRecipesSelected: boolean, isShoppingListSelected: boolean }>();
+  @Output() shoppingListSelected = new EventEmitter<{ isRecipesSelected: boolean, isShoppingListSelected: boolean }>();
 
+  onSelectRecipes() {
+    this.recipesSelected.emit({
+      isRecipesSelected: true,
+      isShoppingListSelected: false
+    });
+  }
+
+  onSelectShoppingList() {
+    this.shoppingListSelected.emit({
+      isRecipesSelected: false,
+      isShoppingListSelected: true
+    });
+  }
 }
